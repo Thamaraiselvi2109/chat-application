@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+  font-family: "Anek Latin", sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
