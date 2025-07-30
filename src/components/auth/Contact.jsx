@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getCountries } from "../../lib/getCountries";
+import { storePhoneNo } from "../../store/slices/DetailsSlice";
 
 const Contact = () => {
     const { codes, loading, error } = useSelector((state) => state.country);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [selectedCode, setSelectedCode] = useState("");
     const [phone, setPhone] = useState("");
@@ -14,7 +17,6 @@ const Contact = () => {
         dispatch(getCountries());
     }, [dispatch]);
 
-    // ✅ Set default to India (+91)
     useEffect(() => {
         if (codes.length > 0 && !selectedCode) {
             const india = codes.find((c) => c.name.toLowerCase() === "india");
@@ -37,9 +39,10 @@ const Contact = () => {
             return;
         }
 
-        setErrorMsg(""); // clear previous error
-        setPhone("")
-        console.log("Submitted phone number:", `${selectedCode}${phone}`);
+        const fullPhoneNumber = `${selectedCode}${phone}`;
+        dispatch(storePhoneNo(fullPhoneNumber));
+
+        navigate("/otp-verification");
     };
 
     if (loading === "failed") {
@@ -74,23 +77,13 @@ const Contact = () => {
                                 </select>
                             </div>
 
-                            <input
-                                type="tel"
-                                placeholder="Phone number"
-                                className="w-3/5 py-2 px-3 rounded-lg bg-white dark:bg-[#15031e] border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
-                            />
+                            <input type="tel" placeholder="Phone number"
+                                className="w-3/5 py-2 px-3 rounded-lg bg-white dark:bg-[#15031e] border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500" value={phone}
+                                onChange={(e) => setPhone(e.target.value)} />
                         </div>
 
-                        <button
-                            type="submit"
-                            disabled={!phone}
-                            className={`w-full py-2 rounded-lg text-white font-medium transition-colors ${phone ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-400 cursor-not-allowed'
-                                }`}
-                        >
-                            Submit
-                        </button>
+                        <button type="submit" disabled={!phone}
+                            className={`w-full py-2 rounded-lg text-white font-medium transition-colors ${phone ? 'bg-purple-600 hover:bg-purple-700' : 'bg-purple-400 cursor-not-allowed'}`}> Submit </button>
                         {errorMsg && (
                             <p className="text-red-500 text-sm text-center">{errorMsg}</p>
                         )}
