@@ -3,8 +3,19 @@
 @tailwind utilities;
 
 
-body{
+body {
   font-family: "Anek Latin", sans-serif;
   margin: 0px;
   padding: 0px;
+
+}
+
+@layer components {
+  .app {
+    @apply min-h-screen w-full bg-white text-black dark:bg-black dark:text-white;
+    background-image: url(./assets/bg-1.png);
+    background-repeat: no-repeat;
+    background-size: 100 100;
+    background-position: center;
+  }
 }

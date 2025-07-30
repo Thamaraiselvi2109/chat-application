@@ -1,9 +1,9 @@
-import React from 'react';
+import Contact from "../components/auth/Contact";
 
 const Login = () => {
   return (
-    <div>
-      login
+    <div className='h-[70vh] flex justify-center items-center'>
+        <Contact/>
     </div>
   );
 }

@@ -17,7 +17,7 @@ function App() {
   }, [isDark]);
 
   return (
-    <div className="min-h-screen w-full bg-white text-black dark:bg-black dark:text-white">
+    <div className="app">
       <Navbar/>
       <AppRouter/>
     </div>
