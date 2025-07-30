@@ -6,6 +6,10 @@ export default {
   ],
   darkMode: 'class',
   theme: {
+    container: {
+      center: true,          // Center the container
+      padding: '1rem',       // Optional: Add horizontal padding
+    },
     extend: {},
   },
   plugins: [],
