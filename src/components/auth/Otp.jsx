@@ -9,8 +9,8 @@ const Otp = () => {
     const [otp, setOtp] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const secretCode = useSelector((state) => state.details.secretCode);
 
+    const secretCode = useSelector((state) => state.details.secretCode);
     const isOtpValid = useSelector((state) => state.details.isOtpValid);
 
     const handleVerify = () => {
@@ -24,7 +24,7 @@ const Otp = () => {
         }
 
         if (isOtpValid === true) {
-            const timer = setTimeout(() => navigate("/dashboard"), 300);
+            const timer = setTimeout(() => navigate("/"), 300);
             return () => clearTimeout(timer);
         }
     }, [isOtpValid, secretCode, navigate]);

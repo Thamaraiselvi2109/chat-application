@@ -7,7 +7,7 @@ const OtpProtected = ({ children }) => {
     const secret = useSelector((state) => state.details.secretCode);
 
     if (!phone || !secret) {
-        return <Navigate to="/" replace />;
+        return <Navigate to="/login" replace />;
     }
 
     return children;
