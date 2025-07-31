@@ -52,7 +52,7 @@ const Contact = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center px-4">
-            <div className="w-full max-w-md p-5 rounded-2xl backdrop-blur-lg bg-white/30 dark:bg-white/10 shadow-xl border border-white/30 dark:border-white/10">
+            <div className="w-[340px] md:w-[500px] max-w-md p-5 rounded-2xl backdrop-blur-lg bg-white/30 dark:bg-white/10 shadow-xl border border-white/30 dark:border-white/10">
                 <h1 className="text-3xl font-semibold text-gray-900 dark:text-white mb-8 text-center">
                     Login here
                 </h1>
