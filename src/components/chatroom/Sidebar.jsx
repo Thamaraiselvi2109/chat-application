@@ -16,11 +16,7 @@ const Sidebar = () => {
   w-full md:w-[250px] 
   h-[250px] md:h-full 
   fixed md:static bottom-0 left-0 
-  z-20 bg-white/60 dark:bg-gray-800/60 
-  backdrop-blur-md p-4 overflow-y-auto 
-  border-t md:border-t-0 md:border-r 
-  border-white/30 dark:border-white/10
-">
+  z-20 backdrop-blur-md p-4 overflow-y-auto dark:border-white/10">
 
             <h2 className="text-xl font-bold mb-4 text-black dark:text-white">Chats</h2>
 

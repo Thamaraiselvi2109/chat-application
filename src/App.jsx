@@ -16,6 +16,9 @@ function App() {
     }
   }, [isDark]);
 
+  const {secretCode, userOtp} = useSelector((state) => state.details)
+  console.log(secretCode, userOtp)
+
   return (
     <div className="app">
       <Navbar/>

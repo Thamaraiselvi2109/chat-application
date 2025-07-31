@@ -1,25 +1,27 @@
-// store/slices/roomsSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-const RoomsSlice = createSlice({
-  name: 'rooms',
-  initialState: {
-    list: ['Room 1', 'Room 2'],
-    selected: 'Room 1',
-    searchTerm: '',
-  },
-  reducers: {
-    addRoom: (state, action) => {
-      state.list.push(action.payload);
+const roomsSlice = createSlice({
+    name: 'rooms',
+    initialState: {
+        list: ['General', 'Tech', 'Support'],
+        selected: 'General', // default selected room
+        searchTerm: '',
     },
-    selectRoom: (state, action) => {
-      state.selected = action.payload;
+    reducers: {
+        selectRoom: (state, action) => {
+            state.selected = action.payload;
+        },
+        addRoom: (state, action) => {
+            const newRoom = action.payload;
+            if (!state.list.includes(newRoom)) {
+                state.list.push(newRoom);
+            }
+        },
+        setSearchTerm: (state, action) => {
+            state.searchTerm = action.payload;
+        },
     },
-    setSearchTerm: (state, action) => {
-      state.searchTerm = action.payload;
-    },
-  },
 });
 
-export const { addRoom, selectRoom, setSearchTerm } = RoomsSlice.actions;
-export default RoomsSlice.reducer;
+export const { selectRoom, addRoom, setSearchTerm } = roomsSlice.actions;
+export default roomsSlice.reducer;

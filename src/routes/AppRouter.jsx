@@ -9,8 +9,8 @@ const AppRouter = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route path="/otp-verification" element={ <OtpProtected><OtpVerification /></OtpProtected> } />
-        <Route path="/dashboard" element={<Home/>}/>
+        <Route path="/otp-verification" element={<OtpProtected><OtpVerification /></OtpProtected>} />
+        <Route path="/dashboard" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
