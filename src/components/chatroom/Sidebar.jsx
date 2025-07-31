@@ -17,7 +17,6 @@ const Sidebar = () => {
             h-[250px] md:h-full 
             fixed md:static bottom-0 left-0 
             z-20 p-3 overflow-y-auto 
-            bg-white dark:bg-gray-900 
             shadow md:shadow-none border-t md:border-t-0
             border-gray-200 dark:border-white/10">
 
