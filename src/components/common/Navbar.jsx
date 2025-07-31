@@ -13,7 +13,7 @@ const Navbar = () => {
 
     return (
         <div className={navStyle}>
-            <div className="max-w-screen-xl h-[100px] mx-auto px-4 sm:px-6 lg:px-10 py-4">
+            <div className="max-w-screen-xl h-[70px] md:h-[100px] mx-auto px-4 sm:px-6 lg:px-10 py-4">
                 <div className="flex items-center justify-between">
                     <div className="flex-shrink-0">
                         <img

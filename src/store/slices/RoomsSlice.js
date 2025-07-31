@@ -17,11 +17,20 @@ const roomsSlice = createSlice({
                 state.list.push(newRoom);
             }
         },
+        deleteRoom: (state, action) => {
+            const roomToDelete = action.payload;
+            state.list = state.list.filter(room => room !== roomToDelete);
+
+            // Optional: Reset selected if deleted
+            if (state.selected === roomToDelete) {
+                state.selected = state.list[0] || '';
+            }
+        },
         setSearchTerm: (state, action) => {
             state.searchTerm = action.payload;
         },
-    },
+    }
 });
 
-export const { selectRoom, addRoom, setSearchTerm } = roomsSlice.actions;
+export const { selectRoom, addRoom, deleteRoom, setSearchTerm } = roomsSlice.actions;
 export default roomsSlice.reducer;
