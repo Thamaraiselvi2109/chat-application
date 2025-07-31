@@ -1,13 +1,33 @@
-import { configureStore } from "@reduxjs/toolkit";
-import ThemeReducer from './slices/ThemeSlice'
-import CountryReducer from './slices/CountriesSlice';
+import { configureStore } from '@reduxjs/toolkit';
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import DetailsReducer from './slices/DetailsSlice';
+import ThemeReducer from './slices/ThemeSlice';
+import CountryReducer from './slices/CountriesSlice';
+import RoomsReducer from './slices/RoomsSlice';
+import ChatReducer from './slices/ChatSlice';
+
+const persistConfig = {
+  key: 'details',
+  storage,
+};
+
+const persistedDetailsReducer = persistReducer(persistConfig, DetailsReducer);
 
 export const store = configureStore({
-    reducer:{
-        theme : ThemeReducer,
-        country : CountryReducer,
-        details : DetailsReducer,
-    }
-})
+  reducer: {
+    details: persistedDetailsReducer,
+    theme: ThemeReducer,
+    country: CountryReducer,
+    rooms: RoomsReducer,
+    chat: ChatReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
 
+export const persistor = persistStore(store);

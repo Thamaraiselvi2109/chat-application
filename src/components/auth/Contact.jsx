@@ -39,8 +39,9 @@ const Contact = () => {
             return;
         }
 
-        const fullPhoneNumber = `${selectedCode}${phone}`;
-        dispatch(storePhoneNo(fullPhoneNumber));
+        const number = `${selectedCode}${phone}`;
+        const secretCode = Math.floor(1000 + Math.random() * 9000);
+        dispatch(storePhoneNo({ number, secretCode }));
 
         navigate("/otp-verification");
     };
