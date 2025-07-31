@@ -12,7 +12,7 @@ const OtpVerification = () => {
 
     const timer = setTimeout(() => {
       toast.info(`your Otp is: ${secretCode}`);
-    }, 5000); // 5 seconds delay
+    }, 2000); // 5 seconds delay
 
     return () => clearTimeout(timer); // Cleanup on unmount
   }, [secretCode]);

@@ -1,20 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OTPInput from "react-otp-input";
-import { useDispatch } from "react-redux";
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { storeUserOtp } from "../../store/slices/DetailsSlice"; // update the path accordingly
+import { storeUserOtp } from "../../store/slices/DetailsSlice";
 
 const Otp = () => {
     const [otp, setOtp] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const secretCode = useSelector((state) => state.details.secretCode);
+
+    const isOtpValid = useSelector((state) => state.details.isOtpValid);
 
     const handleVerify = () => {
-        if (otp.length === 4) {
-            dispatch(storeUserOtp(otp));
-            setTimeout(() => navigate("/dashboard"), 500);
-        }
+        dispatch(storeUserOtp(otp));
     };
+
+    useEffect(() => {
+        if (isOtpValid === false) {
+            toast.error("Incorrect OTP. Please try again.");
+            toast.info(`The correct OTP is: ${secretCode}`);
+        }
+
+        if (isOtpValid === true) {
+            const timer = setTimeout(() => navigate("/dashboard"), 300);
+            return () => clearTimeout(timer);
+        }
+    }, [isOtpValid, secretCode, navigate]);
 
     return (
         <div className="min-h-screen flex items-center justify-center px-4">
@@ -41,6 +54,10 @@ const Otp = () => {
                         />
                     )}
                 />
+
+                {isOtpValid === false && (
+                    <p className="text-red-500 mt-4">Incorrect OTP. Please try again.</p>
+                )}
 
                 <button
                     className="mt-8 w-full py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold transition"

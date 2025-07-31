@@ -1,12 +1,16 @@
+// components/protected/OtpProtected.jsx
 import { useSelector } from 'react-redux';
-import { Navigate } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
 
 const OtpProtected = ({ children }) => {
-    const {number} = useSelector((state) => state.details)
-    if(!number){
-        return <Navigate to="/" replace/>;
+    const phone = useSelector((state) => state.details.number);
+    const secret = useSelector((state) => state.details.secretCode);
+
+    if (!phone || !secret) {
+        return <Navigate to="/" replace />;
     }
-     return children;
-}
+
+    return children;
+};
 
 export default OtpProtected;

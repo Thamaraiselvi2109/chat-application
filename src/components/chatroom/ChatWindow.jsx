@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendMessage } from '../../store/slices/ChatSlice';
+import { LogOut } from '../auth/LogOut';
 
 const ChatWindow = () => {
     const dispatch = useDispatch();
@@ -64,8 +65,9 @@ const ChatWindow = () => {
     return (
         <main className="flex flex-col h-[calc(100vh-100px)] bg-white/20 dark:bg-white/10 rounded-2xl shadow overflow-hidden">
             {/* Header */}
-            <header className="p-4 border-b">
+            <header className="p-4 border-b flex justify-between">
                 <h2 className="text-lg font-semibold truncate">{selectedRoom}</h2>
+                <LogOut/>
             </header>
 
             {/* Messages */}
