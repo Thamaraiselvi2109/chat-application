@@ -97,7 +97,7 @@ const ChatWindow = ({ onToggleSidebar }) => {
     }
 
     return (
-        <main className="flex flex-col h-[calc(100vh-70px)] md:h-[calc(100vh-100px)] bg-white/20 dark:bg-white/10 rounded-2xl shadow overflow-hidden">
+        <main className="flex flex-col h-[calc(100vh-70px)] md:h-[calc(100vh-100px)] rounded-2xl shadow overflow-hidden">
             {/* Header */}
             <header className="p-4 border-b flex justify-between items-center bg-white dark:bg-gray-800">
                 <h2 className="text-lg font-semibold truncate text-gray-800 dark:text-white">{selectedRoom}</h2>
@@ -114,7 +114,7 @@ const ChatWindow = ({ onToggleSidebar }) => {
             </header>
 
             {/* Messages */}
-            <div ref={scrollContainerRef} className="flex-1 overflow-y-auto p-4 bg-white/10 dark:bg-gray-900">
+            <div ref={scrollContainerRef} className="flex-1 overflow-y-auto p-4">
                 <div className="space-y-3">
                     {messages.map((msg, index) => (
                         <div key={index} className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
